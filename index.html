@@ -38,49 +38,52 @@
     }
 
     button {
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      cursor: pointer;
-      background-color: #bb86fc;
-      color: #1e1e1e;
-      border: none;
-      border-radius: 0.5rem;
-      margin-bottom: 2rem;
-      transition: background-color 0.3s;
-    }
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background: linear-gradient(145deg, #bb86fc, #985eff);
+  color: #1e1e1e;
+  border: none;
+  border-radius: 0.75rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 15px rgba(187, 134, 252, 0.5), 0 5px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
 
-    button:hover {
-      background-color: #9b6efc;
-    }
+button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 10%, transparent 10.01%);
+  background-size: 10% 10%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 
-    .polaroid-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-    }
+button:hover {
+  background: linear-gradient(145deg, #d0aaff, #a678ff);
+  box-shadow: 0 0 25px rgba(187, 134, 252, 0.8), 0 8px 20px rgba(0, 0, 0, 0.4);
+}
 
-    .polaroid {
-      background: #ffffff;
-      color: #000000;
-      padding: 1rem;
-      width: 150px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-      border-radius: 0.75rem;
-      transform: scale(0.8) rotate(-3deg);
-      animation: popIn 0.5s ease forwards;
-    }
+button:hover::before {
+  opacity: 1;
+  animation: shimmer 1s linear infinite;
+}
 
-    @keyframes popIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.6) rotate(-10deg);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-      }
-    }
+@keyframes shimmer {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 
     .polaroid:hover {
       transform: scale(1.05) translateY(-5px);
@@ -102,7 +105,7 @@
 </head>
 <body>
   <div class="card">
-    <h1>Complementary Color Polaroid Generator</h1>
+    <h1>Generate Colors!</h1>
     <button onclick="generatePolaroids()">Generate Colors</button>
     <div class="polaroid-container" id="polaroidContainer"></div>
   </div>
